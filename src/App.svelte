@@ -16,7 +16,7 @@
 	</p>
 	<div>
 		<h2>Which district has the most trees per square kilometre?</h2>
-		<img src={TreesPerDistrict} alt="Map showing the density of trees per district"
+		<img src="TreesPerDistrict.png" alt="Map showing the density of trees per district"
 		width="60%">
 		
 	</div>
