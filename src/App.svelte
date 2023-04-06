@@ -3,7 +3,7 @@
 	import Map from './components/Map.svelte';
 	import LineChart from './components/lineChart.svelte';
 	import ndvi_data from './data/NDVI_bielefeld.json';
-	import backgroud_pic from './data/tree.jpg';
+	import TreesPerDistrict from './data/TreesPerDistrict.png';
 </script>
   
 <div class="app">
@@ -16,7 +16,7 @@
 	</p>
 	<div>
 		<h2>Which district has the most trees per square kilometre?</h2>
-		<img src="../src/data/TreesPerDistrict.png" alt="Map showing the density of trees per district"
+		<img src={TreesPerDistrict} alt="Map showing the density of trees per district"
 		width="60%">
 		
 	</div>
