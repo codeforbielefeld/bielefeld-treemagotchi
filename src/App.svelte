@@ -10,9 +10,11 @@
 	<Navbar />
 	<Map />
 	<br/>
-	<p>This website works with the data from Bielefeld’s official tree registry. That is where all trees in public spaces are listed. It does not contain forests but single trees - the ones that might turn a boring and grey street into a greener area.
+	<p>This website works with the data from Bielefeld’s official 
+		<a href="https://open-data.bielefeld.de/dataset/baumbestand-umweltbetrieb">tree registry</a>. That is where all trees in public spaces are listed.
+		 It does not contain forests and groups of trees. Because of that, the focus of this analysis is on the single trees.
 	<br/>
-	The following map shows which districts have the most public trees. It reveals that the districts of Schildesche and Mitte (centre) have the most trees per square kilometre. That might be related to the big recreational area around the lake “Obersee”.
+	The following map shows which districts have the most public trees, relatively. It reveals that the districts of Schildesche and Mitte (centre) have the most trees per square kilometre. That might be related to the big recreational area around the lake “Obersee”.
 	</p>
 	<div>
 		<h2>Which district has the most trees per square kilometre?</h2>
@@ -21,7 +23,7 @@
 		
 	</div>
 	<p>
-		How green a city is can be seen not only from the number of trees, but from the sum of all the vegetation.
+		Trees are only one aspect of a green city. There are also parks, forests, gardens and agriculture. The sum of all the vegetation in the city needs to be taken into account. 
 		One way of analysing this is the normalized difference vegetation index (NDVI).
 		Using satellite imaging data, it measures the difference between near-infrared (which vegetation strongly reflects) and red light (which vegetation absorbs). The result contains information about the condition of the vegetation in a city. 
 		The following graph visualizes the development of the average NDVI values of the are of Bielefeld from 2013 to 2023.
