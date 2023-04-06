@@ -1,0 +1,23 @@
+//I drew a polygon around the region of interest and performed the following function on that geometry
+
+// Import LANDSAT 8 collection and apply a datarange filter.
+var l8 = ee.ImageCollection('LANDSAT/LC08/C01/T1_TOA').filterDate('2013-01-01', '2023-03-31');
+
+// Apply a function over the collection, to generate a NDVI layer
+var withNDVI = l8.map(function(image) {
+var ndvi = image.normalizedDifference(['B5', 'B4']).rename('NDVI');
+
+return image.addBands(ndvi);
+
+});
+
+// Create a graphic
+var chart = ui.Chart.image.series({
+imageCollection: withNDVI.select('NDVI'),
+region: geometry,
+reducer: ee.Reducer.first(),
+scale: 30
+}).setOptions({title: 'NDVI over time'});
+
+// Print the graph at console
+print(chart);
