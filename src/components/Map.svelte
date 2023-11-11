@@ -82,7 +82,7 @@
                     'circle-color': '#329b51',
                     'circle-stroke-color': '#2A2B2A',
                     'circle-stroke-width': 1,
-                    'circle-radius': [
+                     'circle-radius': [
                         'step',
                         ['get', 'point_count'],
                         10,
