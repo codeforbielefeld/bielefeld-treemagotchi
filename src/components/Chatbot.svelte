@@ -96,33 +96,51 @@
     });
 
     function scrollToBottom() {
-        const chatContainer = document.getElementById('chat-container');
+        const chatContainer = document.getElementById('chat-messages-wrapper');
         chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
 
 </script>
 
-<main>
-    hallo!!!!
-</main>
-
 <style>
-    #chat-container {
-        height: 300px;
-        overflow-y: auto;
-        border: 1px solid #2A2B2A;
-        padding: 10px;
-        margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
+    @media only screen and (max-width:599px) {
+        #chat-container {
+            z-index: 1000;
+            background: #eee;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            border: 1px solid #2A2B2A;
+            padding: 10px;
+        }
+
+        .chat-messages-wrapper {
+            flex-grow: 1;
+            overflow-y: auto;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .new-chat-messages {
+            display: flex;
+            padding: 10px;
+            margin: 10px;
+            flex-direction: row;
+            flex-shrink: 1;
+        }
     }
+
 
     .message {
         margin-bottom: 10px;
         padding: 8px;
         border-radius: 5px;
         max-width: 70%;
+        text-align: left;
     }
 
     .user-message {
@@ -158,17 +176,21 @@
 </style>
 
 <div id="chat-container">
-    {#each messages as {text, label, type, sender}}
-        {#if type === "choice"}
-            <button class="message {sender === 'user' ? 'user-message' : 'bot-message'}" on:click={(e) => {sendMessage(text, label)}}>{text}</button>
-        {:else}
-            <div class="message {sender === 'user' ? 'user-message' : 'bot-message'} {type === 'small' ? 'message-small' : 'message-normal'}">{text}</div>
-        {/if}
-    {/each}
+    <div class="chat-messages-wrapper">
+        <div>
+            {#each messages as {text, label, type, sender}}
+                {#if type === "choice"}
+                    <button class="message {sender === 'user' ? 'user-message' : 'bot-message'}" on:click={(e) => {sendMessage(text, label)}}>{text}</button>
+                {:else}
+                    <div class="message {sender === 'user' ? 'user-message' : 'bot-message'} {type === 'small' ? 'message-small' : 'message-normal'}">{text}</div>
+                {/if}
+            {/each}
+        </div>
+    </div>
+
+    <div class="new-chat-messages">
+        <input disabled='{!chatAvailable}' bind:value={newMessage} placeholder="Type your message..."/>
+        <button disabled='{!chatAvailable}' on:click={(e) => {sendMessage(newMessage, newMessage)}}>Send</button>
+    </div>
 </div>
 
-<div>
-    <input disabled='{!chatAvailable}' bind:value={newMessage} placeholder="Type your message..."/>
-    <button disabled='{!chatAvailable}' on:click={(e) => {sendMessage(newMessage, newMessage)}}>Send</button>
-</div>
-  

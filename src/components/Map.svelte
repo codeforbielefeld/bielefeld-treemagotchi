@@ -114,19 +114,29 @@
             });
 
             map.on('click', 'marker', function (e) {
-                // Change the cursor style to indicate interactivity
-                map.getCanvas().style.cursor = 'pointer';
-
-                // Get the marker properties and coordinates
                 var properties = e.features[0].properties;
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                var tooltip_chat = true;
+                if (window.innerWidth < 600) {
+                    let chatbotElement = document.createElement("div");
+                    chatbotElement.id = "chatbot";
+                    document.body.appendChild(chatbotElement);
+                } else {
+                    // Change the cursor style to indicate interactivity
+                    map.getCanvas().style.cursor = 'pointer';
 
-                // Set the tooltip text and position
-                tooltip.setLngLat(coordinates)
-                    .setHTML('<div id="chatbot"></div>')
-                    //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
-                    .addTo(map);
+                    // Get the marker properties and coordinates
+
+                    var tooltip_chat = true;
+
+                    // Set the tooltip text and position
+                    tooltip.setLngLat(coordinates)
+                        .setHTML('<div id="chatbot"></div>')
+                        .setMaxWidth("100vw")
+                        //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
+                        .addTo(map)
+                    tooltip.getElement().removeAttribute("style");
+                }
+
                 new Chatbot({
                     target: document.getElementById("chatbot"),
                     props:{
@@ -155,14 +165,27 @@
 
     .map-wrap {
         position: relative;
-        width: 100%;
-        height: calc(100vh - 77px); /* calculate height of the screen minus the heading */
+        width: 100vw;
+        height: 100vh; /* calculate height of the screen minus the heading */
     }
 
     .map {
         position: relative;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        min-width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+    }
+
+    @media only screen and (max-width: 600px) {
+        #chatbot {
+            position: fixed;
+            top: 0;
+            left:0;
+            width: calc(100vw-20px);
+            height: calc(100vh-20px);
+            padding: 10px;
+        }
     }
 
     .watermark {
@@ -178,7 +201,8 @@
         padding: 4px;
         font-size: 14px;
         line-height: 1.4;
-        max-width: 300px;
+        max-width: 400px;
+        width: 400px;
         color: white;
         background-color: green;
         border-radius: 3px;
