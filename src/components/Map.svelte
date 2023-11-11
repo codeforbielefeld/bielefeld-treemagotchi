@@ -1,6 +1,8 @@
 <script>
     import {onMount} from 'svelte';
     import {Map, NavigationControl, Popup} from 'maplibre-gl';
+    import Tooltip from "./Tooltip.svelte";
+    import Chatbot from "./Chatbot.svelte";
     import 'maplibre-gl/dist/maplibre-gl.css';
     import proj4 from 'proj4';
     import geojson from '../data/bielefeld_singletrees.json';
@@ -107,33 +109,45 @@
 
             // Add tooltip logic for the markers
             var tooltip = new Popup({
-                closeButton: false,
-                closeOnClick: false
+                closeButton: true,
+                closeOnClick: true
             });
 
-            map.on('mouseenter', 'marker', function (e) {
+            map.on('click', 'marker', function (e) {
                 // Change the cursor style to indicate interactivity
                 map.getCanvas().style.cursor = 'pointer';
 
                 // Get the marker properties and coordinates
                 var properties = e.features[0].properties;
                 var coordinates = e.features[0].geometry.coordinates.slice();
+                var tooltip_chat = true;
 
                 // Set the tooltip text and position
                 tooltip.setLngLat(coordinates)
-                    .setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
+                    .setHTML('<div id="chatbot"></div>')
+                    //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
                     .addTo(map);
+                new Chatbot({
+                    target: document.getElementById("chatbot"),
+                    props:{
+                        "baumart": properties.baumart_de,
+                        "kronendurchmesser": properties.kronendurc,
+                        "baumhoehe": properties.baumhoehe_,
+                    }
+                })
             });
-
+            
+            /*
             map.on('mouseleave', 'marker', () => {
                 // Change the cursor style back to default
                 map.getCanvas().style.cursor = '';
 
                 // Remove the tooltip
                 tooltip.remove();
-            });
+            });*/
         });
     });
+
 
 </script>
 
