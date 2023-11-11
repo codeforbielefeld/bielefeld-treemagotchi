@@ -136,15 +136,6 @@
                     }
                 })
             });
-            
-            /*
-            map.on('mouseleave', 'marker', () => {
-                // Change the cursor style back to default
-                map.getCanvas().style.cursor = '';
-
-                // Remove the tooltip
-                tooltip.remove();
-            });*/
         });
     });
 
