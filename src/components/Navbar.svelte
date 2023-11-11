@@ -1,9 +1,7 @@
 <div class="heading">
-    <h1>Trees in Bielefeld</h1>
+    <h2>Talking Trees: Unterhalte dich mit Bielefelds Bäumen</h2>
     
-    <p>Bielefeld is known to be a pretty green city. We love our parks, the forest and the city trees.
-      But how much do you know about the trees in your neighbourhood? Use this map to explore Bielefeld’s trees.
-      Find out how tall they are, how wide their crowns are and what species they are. Zoom in to view single trees.</p>
+    <h4 style="text-align:center">Finde den Baum, vor dem du stehst auf der Karte und starte einen Chat mit ihm.</h4>
     
     
 </div>
@@ -16,7 +14,7 @@
       color: white;
     }
     
-    .heading > h1 {
+    .heading > h3 {
       padding: 20px;
       margin: 0;
     }

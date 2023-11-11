@@ -6,6 +6,7 @@
     import 'maplibre-gl/dist/maplibre-gl.css';
     import proj4 from 'proj4';
     import geojson from '../data/bielefeld_singletrees.json';
+    import Navbar from "./Navbar.svelte";
 
     let map;
     let mapContainer;
@@ -152,7 +153,7 @@
 
 </script>
 
-
+<Navbar />
 <div class="map-wrap">
     <a href="https://www.maptiler.com" class="watermark"><img
             src="https://api.maptiler.com/resources/logo.svg" alt="MapTiler logo"/></a>
