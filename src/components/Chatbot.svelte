@@ -81,6 +81,9 @@
                                 }
                             })]
                             break;
+                        case "visual":
+                          messages = [...messages, {text: "Grafik", type: "visual", sender: "bot", source: msg.payload.image}]
+                          break;
                         case "end":
                             chatAvailable = false;
                             break;
@@ -186,6 +189,14 @@
         color: #333;
     }
 
+    .message-img{
+      align-self: flex-start;
+      max-width: 90%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 5px;
+   }
+
     input {
         width: calc(100% - 20px);
         padding: 8px;
@@ -214,12 +225,15 @@
     </div>
     <div class="chat-messages-wrapper" id="chat-messages-wrapper">
         <div>
-            {#each messages as {text, label, type, sender}}
+            {#each messages as {text, label, type, sender, source}}
                 {#if type === "choice"}
                     <button class="message {sender === 'user' ? 'user-message' : 'bot-message'}"
                             on:click={(e) => {sendMessage(text, label)}}>{text}</button>
-                {:else}
+                {:else if type === "text"}
                     <div class="message {sender === 'user' ? 'user-message' : 'bot-message'} {type === 'small' ? 'message-small' : 'message-normal'}">{text}</div>
+                {:else if type === "visual"}
+                    <div class="message-img {sender === 'user' ? 'user-message' : 'bot-message'}
+                    {type === 'small' ? 'message-small' : 'message-normal'}"><img class="message-img" src="{source}" alt="grafik Regenmenge"></div>
                 {/if}
             {/each}
         </div>
