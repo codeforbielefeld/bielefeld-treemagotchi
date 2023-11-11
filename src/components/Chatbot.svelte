@@ -81,8 +81,9 @@
                             chatAvailable = false;
                             break;
                     }
+                    scrollToBottom();
                 })
-                scrollToBottom();
+                setTimeout(scrollToBottom, 200);
                 newMessage = ''; // Clear the input field
             })
             .catch(err => console.error("after start interaction error", err));
@@ -98,6 +99,13 @@
     function scrollToBottom() {
         const chatContainer = document.getElementById('chat-messages-wrapper');
         chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // Function to handle the enter key in the input field
+    function handleKeydown(event) {
+        if (event.key === 'Enter') {
+            sendMessage(newMessage, newMessage);
+        }
     }
 
 
@@ -176,7 +184,7 @@
 </style>
 
 <div id="chat-container">
-    <div class="chat-messages-wrapper">
+    <div class="chat-messages-wrapper" id="chat-messages-wrapper">
         <div>
             {#each messages as {text, label, type, sender}}
                 {#if type === "choice"}
@@ -188,9 +196,15 @@
         </div>
     </div>
 
-    <div class="new-chat-messages">
-        <input disabled='{!chatAvailable}' bind:value={newMessage} placeholder="Type your message..."/>
-        <button disabled='{!chatAvailable}' on:click={(e) => {sendMessage(newMessage, newMessage)}}>Send</button>
+    <div>
+        <input 
+            disabled='{!chatAvailable}' 
+            bind:value={newMessage} 
+            placeholder={chatAvailable ? "Schreibe deine Nachricht..." : "Chat beendet."} 
+            on:keydown={handleKeydown} /> <!-- Added keydown event listener -->
+        <button 
+            disabled='{!chatAvailable}' 
+            on:click={(e) => {sendMessage(newMessage, newMessage)}}>Send</button>
     </div>
 </div>
 
