@@ -3,7 +3,6 @@
 
     import {onMount} from "svelte";
 
-
     const options = {
         method: 'POST',
         headers: {
@@ -74,7 +73,12 @@
                         case "choice":
                             messages = [...messages, {text: "Wähle eine Option aus:", type: "small", sender: 'bot'}]
                             messages = [...messages, ...msg.payload.buttons.map(b => {
-                                return {label: b.request.payload.intent.name, text: b.name, type: "choice", sender: 'bot'}
+                                return {
+                                    label: b.request.payload.intent.name,
+                                    text: b.name,
+                                    type: "choice",
+                                    sender: 'bot'
+                                }
                             })]
                             break;
                         case "end":
@@ -104,7 +108,7 @@
 </script>
 
 <style>
-    @media only screen and (max-width:599px) {
+    @media only screen and (max-width: 599px) {
         #chat-container {
             z-index: 1000;
             background: #eee;
@@ -116,6 +120,21 @@
             top: 0;
             border: 1px solid #2A2B2A;
             padding: 10px;
+        }
+
+        .close-chat {
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            margin: 0 20px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        .close-chat #close-button {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
         }
 
         .chat-messages-wrapper {
@@ -176,11 +195,21 @@
 </style>
 
 <div id="chat-container">
+    <div class="close-chat">
+        <svg id="close-button" on:click={(e) => {
+            let parent = document.getElementById("chat-container").parentElement;
+            parent.removeChild(document.getElementById("chat-container"));
+        }} xmlns="http://www.w3.org/2000/svg" fill="000" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+             class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+    </div>
     <div class="chat-messages-wrapper">
         <div>
             {#each messages as {text, label, type, sender}}
                 {#if type === "choice"}
-                    <button class="message {sender === 'user' ? 'user-message' : 'bot-message'}" on:click={(e) => {sendMessage(text, label)}}>{text}</button>
+                    <button class="message {sender === 'user' ? 'user-message' : 'bot-message'}"
+                            on:click={(e) => {sendMessage(text, label)}}>{text}</button>
                 {:else}
                     <div class="message {sender === 'user' ? 'user-message' : 'bot-message'} {type === 'small' ? 'message-small' : 'message-normal'}">{text}</div>
                 {/if}
