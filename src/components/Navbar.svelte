@@ -10,6 +10,7 @@
     .heading {
       background-color: #99CB38;
       color: white;
+        z-index: 2;
     }
 
     .heading h2, .heading p {

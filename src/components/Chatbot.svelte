@@ -150,7 +150,7 @@
             top: 0;
             left: 0;
             width: 100vw;
-            height: 100vh;
+            height: 100%;
             background: rgba(0, 0, 0, 0.5);
             z-index: 1000;
         }
@@ -160,7 +160,7 @@
             background: #eee;
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 20px);
+            height: calc(100% - 20px);
             width: calc(100vw - 20px);
             position: fixed;
             top: 0;
@@ -195,6 +195,7 @@
 
         .bot-message {
             background-color: #053B06;
+            color: #fff;
             align-self: flex-start;
         }
 
@@ -276,7 +277,7 @@
     .message-small {
         background-color: transparent;
         padding-bottom: 0;
-        margin-bottom: 0;
+        margin-bottom: 10px;
         color: #333;
         font-size: 0.8em;
     }
