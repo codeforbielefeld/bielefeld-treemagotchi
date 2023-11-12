@@ -1,21 +1,30 @@
 <div class="heading">
-    <h2>Talking Trees: Unterhalte dich mit Bielefelds Bäumen</h2>
-    
-    <h4 style="text-align:center">Finde den Baum, vor dem du stehst auf der Karte und starte einen Chat mit ihm.</h4>
+    <h2>Talking Trees</h2>
+    <p>Unterhalte dich mit Bielefelds Bäumen!</p>
+    <p>Finde den Baum, vor dem du stehst auf der Karte,<br /> und starte einen Chat mit ihm.</p>
     
     
 </div>
     
 <style>
     .heading {
-      margin: 0;
-      padding: 0px;
-      background-color: #329b51;
+      background-color: #99CB38;
       color: white;
     }
-    
-    .heading > h3 {
-      padding: 20px;
-      margin: 0;
+
+    .heading h2, .heading p {
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        margin: 0;
+        color: #333;
     }
+
+    .heading p {
+        text-align: left;
+        font-size: 0.8rem;
+    }
+    
 </style>

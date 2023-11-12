@@ -135,7 +135,6 @@
                         .setMaxWidth("100vw")
                         //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
                         .addTo(map)
-                    tooltip.getElement().removeAttribute("style");
                 }
 
                 new Chatbot({
@@ -183,8 +182,8 @@
             position: fixed;
             top: 0;
             left:0;
-            width: calc(100vw-20px);
-            height: calc(100vh-20px);
+            width: calc(100vw - 20px);
+            height: calc(100vh - 20px);
             padding: 10px;
         }
     }
