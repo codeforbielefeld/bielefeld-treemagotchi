@@ -13,7 +13,7 @@
 
     const apiKey = 'ALLR7G4pDi4tPaPKedPA';
     //coordinates of the center of Bielefeld
-    const initialState = {lng: 8.53, lat: 52.02, zoom: 13};
+    const initialState = {lng: 8.5267693, lat: 52.0200753, zoom: 18};
     // 51.9359397,9.1056505,18.2z
 
 
@@ -117,25 +117,25 @@
             map.on('click', 'marker', function (e) {
                 var properties = e.features[0].properties;
                 var coordinates = e.features[0].geometry.coordinates.slice();
-                if (window.innerWidth < 600) {
+                // if (window.innerWidth < 600) {
                     let chatbotElement = document.createElement("div");
                     chatbotElement.id = "chatbot";
                     document.body.appendChild(chatbotElement);
-                } else {
-                    // Change the cursor style to indicate interactivity
-                    map.getCanvas().style.cursor = 'pointer';
-
-                    // Get the marker properties and coordinates
-
-                    var tooltip_chat = true;
-
-                    // Set the tooltip text and position
-                    tooltip.setLngLat(coordinates)
-                        .setHTML('<div id="chatbot"></div>')
-                        .setMaxWidth("100vw")
-                        //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
-                        .addTo(map)
-                }
+                // } else {
+                //     // Change the cursor style to indicate interactivity
+                //     map.getCanvas().style.cursor = 'pointer';
+                //
+                //     // Get the marker properties and coordinates
+                //
+                //     var tooltip_chat = true;
+                //
+                //     // Set the tooltip text and position
+                //     tooltip.setLngLat(coordinates)
+                //         .setHTML('<div id="chatbot"></div>')
+                //         .setMaxWidth("100vw")
+                //         //.setHTML('<h3>' + properties.baumart_de + '</h3> <p>Crown width (m): ' + properties.kronendurc + '</p><p>Height (m): ' + properties.baumhoehe_)
+                //         .addTo(map)
+                // }
 
                 new Chatbot({
                     target: document.getElementById("chatbot"),
