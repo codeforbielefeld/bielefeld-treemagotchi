@@ -34,12 +34,13 @@
             }))
         };
 
-        console.log(transformedGeojson);
+        console.log("GEojson:", transformedGeojson);
 
         const map = new Map({
             container: 'map',
             style: {
                 'version': 8,
+                "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
                 'sources': {
                     'voyager_nolabels': {
                         'type': 'raster',
@@ -94,6 +95,18 @@
                 }
             });
 
+            map.addLayer({
+            id: 'cluster-count',
+            type: 'symbol',
+            source: 'markers',
+            filter: ['has', 'point_count'],
+            layout: {
+                'text-field': '{point_count_abbreviated}',
+                'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                'text-size': 12
+            }
+            });
+
             // Add a new layer for the individual markers
             map.addLayer({
                 id: 'marker',
@@ -107,6 +120,7 @@
                     'circle-stroke-color': '#2A2B2A'
                 }
             });
+
 
             // Add tooltip logic for the markers
             var tooltip = new Popup({
