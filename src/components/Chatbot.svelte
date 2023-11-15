@@ -135,7 +135,7 @@
 
     // Function to handle the enter key in the input field
     function handleKeydown(event) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && newMessage !== '') {
             sendMessage(newMessage, newMessage);
         }
     }
@@ -340,7 +340,11 @@
                         on:keydown={handleKeydown}/> <!-- Added keydown event listener -->
                 <button
                         disabled='{!chatAvailable}'
-                        on:click={(e) => {sendMessage(newMessage, newMessage)}}>
+                        on:click={(e) => {
+                            if (newMessage !== '') {
+                                sendMessage(newMessage, newMessage)
+                            }
+                        }}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round"
