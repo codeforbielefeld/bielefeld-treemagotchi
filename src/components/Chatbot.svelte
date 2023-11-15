@@ -135,7 +135,7 @@
 
     // Function to handle the enter key in the input field
     function handleKeydown(event) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && newMessage !== '') {
             sendMessage(newMessage, newMessage);
         }
     }
